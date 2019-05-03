@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="/js/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>linux手动安装新版本git | Forfly</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Git教程Linux">
+  
+  
+  
+  
+  <meta name="description" content="前因由于在CentOS上通过yum安装的Git版本是1.7.1，而GitHub上已经更新到2.10.1(写作时的版本)了，相比之下还是要升级的。特别是对于我这种不升级会死星人而言，当然稳定或调试好之后是不会随便升级的😄。 下载最新版Git从GitHub上下载2.10.1的tar.gz压缩包。git下载地址 关于rc版，即Release Candidate的缩写，候选版本，选择比带rc的版本下载">
+<meta name="keywords" content="Git,教程,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux手动安装新版本Git">
+<meta property="og:url" content="https://forfly.com/2018/07/12/Linux手动安装新版本Git/index.html">
+<meta property="og:site_name" content="Forfly">
+<meta property="og:description" content="前因由于在CentOS上通过yum安装的Git版本是1.7.1，而GitHub上已经更新到2.10.1(写作时的版本)了，相比之下还是要升级的。特别是对于我这种不升级会死星人而言，当然稳定或调试好之后是不会随便升级的😄。 下载最新版Git从GitHub上下载2.10.1的tar.gz压缩包。git下载地址 关于rc版，即Release Candidate的缩写，候选版本，选择比带rc的版本下载">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cdming.github.io/2018/07/12/Linux手动安装新版本Git/linux install git.png">
+<meta property="og:updated_time" content="2018-07-12T13:20:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux手动安装新版本Git">
+<meta name="twitter:description" content="前因由于在CentOS上通过yum安装的Git版本是1.7.1，而GitHub上已经更新到2.10.1(写作时的版本)了，相比之下还是要升级的。特别是对于我这种不升级会死星人而言，当然稳定或调试好之后是不会随便升级的😄。 下载最新版Git从GitHub上下载2.10.1的tar.gz压缩包。git下载地址 关于rc版，即Release Candidate的缩写，候选版本，选择比带rc的版本下载">
+<meta name="twitter:image" content="https://cdming.github.io/2018/07/12/Linux手动安装新版本Git/linux install git.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Forfly" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "首页"; 
+
+  themeMenus["/archives"] = "归档"; 
+
+  themeMenus["/tags"] = "标签"; 
+
+  themeMenus["/about"] = "关于"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Forfly" rel="home"> Forfly </a>
+            
+          </h1>
+
+          
+            <div class="site-description">Don&#39;t go around saying the world owes you a living. The world owes you nothing. It was here first.-Mark Twain</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">标签</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Linux手动安装新版本Git" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      Linux手动安装新版本Git
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2018/07/12/Linux手动安装新版本Git/" class="article-date">
+	  <time datetime="2018-07-12T13:20:46.000Z" itemprop="datePublished">七月 12, 2018</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="前因"><a href="#前因" class="headerlink" title="前因"></a>前因</h4><p>由于在CentOS上通过<code>yum</code>安装的Git版本是<code>1.7.1</code>，而GitHub上已经更新到<code>2.10.1</code>(写作时的版本)了，相比之下还是要升级的。特别是对于我这种<strong>不升级会死星人</strong>而言，当然稳定或调试好之后是不会随便升级的😄。</p>
+<h4 id="下载最新版Git"><a href="#下载最新版Git" class="headerlink" title="下载最新版Git"></a>下载最新版Git</h4><p>从GitHub上下载<code>2.10.1</code>的tar.gz压缩包。<a href="https://github.com/git/git/releases" target="_blank" rel="noopener">git下载地址</a></p>
+<p><em>关于rc版，即Release Candidate的缩写，候选版本，选择比带rc的版本下载</em></p>
+<p>通过wget下载： <code>➜ wget https://github.com/git/git/archive/v2.10.1.tar.gz</code></p>
+<p>将其解压： <code>➜ tar -xzvf v2.10.1.tar.gz</code></p>
+<a id="more"></a>
+<h4 id="安装编译工具和依赖包"><a href="#安装编译工具和依赖包" class="headerlink" title="安装编译工具和依赖包"></a>安装编译工具和依赖包</h4><p>在安装git之前我们需要下载安装必要的编译工具和依赖文件，以免编译安装git出错</p>
+<p>安装编译工具：<code>➜ ~ yum groupsintall &quot;Development Tools&quot; #安装 编译工具包</code></p>
+<p>安装依赖包： <code>➜ ~ yum install zlib-devel perl-ExtUtils-MakeMaker asciidoc xmlto openssl-devel</code></p>
+<p>安装完成后就可以编译安装git源码了</p>
+<h4 id="编译git源码"><a href="#编译git源码" class="headerlink" title="编译git源码"></a>编译git源码</h4><p>进入git源码文件目录，执行如下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~ <span class="built_in">cd</span> /root/git-2.10.1</span><br><span class="line">~ autoconf <span class="comment">#自动配置</span></span><br><span class="line">~ ./configure</span><br><span class="line">~ make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p>如果没有出错（一般也不会出错），就编译成功了。</p>
+<h4 id="添加git符号链接"><a href="#添加git符号链接" class="headerlink" title="添加git符号链接"></a>添加git符号链接</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">~ ls /usr/local/bin</span><br><span class="line">git            gitk              git-shell           git-upload-pack</span><br><span class="line">git-cvsserver  git-receive-pack  git-upload-archive</span><br><span class="line">~ ln -s /usr/local/bin/git  /usr/bin/</span><br><span class="line">ln: 创建符号链接 "/usr/bin/git": 文件已存在</span><br><span class="line">~ rm /usr/bin/git</span><br><span class="line">rm：是否删除普通文件 "/usr/bin/git"？y #输入y 或直接按Enter</span><br><span class="line">~ ln -s /usr/local/bin/git  /usr/bin/</span><br><span class="line">~ git --version</span><br><span class="line">git version 2.10.1</span><br></pre></td></tr></table></figure>
+<p> <img src="https://cdming.github.io/2018/07/12/Linux手动安装新版本Git/linux install git.png" alt="添加git符号链接"></p>
+<p>OK，到此新版本的git就安装结束了。</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/07/12/SublimeText3必装插件/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          SublimeText3必装插件
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/11/优化Windows10的相关设置/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">优化Windows10的相关设置</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前因"><span class="nav-number">1.</span> <span class="nav-text">前因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下载最新版Git"><span class="nav-number">2.</span> <span class="nav-text">下载最新版Git</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装编译工具和依赖包"><span class="nav-number">3.</span> <span class="nav-text">安装编译工具和依赖包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编译git源码"><span class="nav-number">4.</span> <span class="nav-text">编译git源码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加git符号链接"><span class="nav-number">5.</span> <span class="nav-text">添加git符号链接</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Forfly All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
